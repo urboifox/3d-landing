@@ -1,11 +1,12 @@
+import LabSection from './lab';
 import ProductsSection from './products';
 
 export default function Home() {
     return (
         <div className="flex flex-col">
-            <div className="flex h-dvh items-end bg-linear-to-b from-neutral-700 to-neutral-950">
+            <section className="flex h-dvh items-end bg-linear-to-b from-neutral-700 to-neutral-950">
                 <div className="container pb-32">
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-6 text-white">
                         <div className="flex flex-col gap-1">
                             <h1 className="text-6xl font-black">
                                 CASE <span className="font-mono font-light">1000</span>
@@ -19,8 +20,9 @@ export default function Home() {
                         </button>
                     </div>
                 </div>
-            </div>
+            </section>
             <ProductsSection />
+            <LabSection />
         </div>
     );
 }

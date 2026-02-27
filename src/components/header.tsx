@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 
 export default function Header() {
     const [headerVisible, setHeaderVisible] = useState(true);
+    const [invertColors, setInvertColors] = useState(false);
 
     useEffect(() => {
         let lastScroll = 0;
@@ -20,6 +21,12 @@ export default function Header() {
                     setHeaderVisible(false);
                 } else {
                     setHeaderVisible(true);
+                }
+
+                if (currentScroll > window.innerHeight) {
+                    setInvertColors(true);
+                } else {
+                    setInvertColors(false);
                 }
 
                 lastScroll = currentScroll;
@@ -37,7 +44,12 @@ export default function Header() {
                 headerVisible ? '' : '-translate-y-full'
             )}
         >
-            <div className="container flex items-center justify-between gap-4">
+            <div
+                className={cn(
+                    'container flex items-center justify-between gap-4 transition-colors',
+                    invertColors ? 'text-black' : 'text-white'
+                )}
+            >
                 <h1 className="font-mono text-2xl font-semibold">Three.js</h1>
                 <nav className="flex items-center gap-4 text-sm">
                     <Link href="/" className="hover:underline">
