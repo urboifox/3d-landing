@@ -26,7 +26,7 @@ export default function LabSection() {
     }, []);
 
     return (
-        <section className="flex min-h-dvh w-full flex-col gap-4">
+        <section className="flex min-h-dvh w-full flex-col gap-10 pb-40">
             <motion.img
                 ref={ref}
                 src="/images/lab.png"
