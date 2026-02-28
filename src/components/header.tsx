@@ -40,7 +40,7 @@ export default function Header() {
     return (
         <header
             className={cn(
-                'fixed top-0 w-full py-6 backdrop-blur-md transition-discrete duration-400 ease-out',
+                'fixed top-0 z-50 w-full py-6 backdrop-blur-md transition-discrete duration-400 ease-out',
                 headerVisible ? '' : '-translate-y-full'
             )}
         >
