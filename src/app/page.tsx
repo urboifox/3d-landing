@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import LabSection from './lab';
 import ProductsSection from './products';
 
@@ -15,9 +16,11 @@ export default function Home() {
                                 Redefine the future
                             </p>
                         </div>
-                        <button className="text-primary border-primary hover:border-accent w-fit rounded-full border px-6 py-3 text-sm transition-colors duration-300">
-                            Learn More
-                        </button>
+                        <Link href="/product">
+                            <button className="text-primary border-primary hover:border-accent w-fit rounded-full border px-6 py-3 text-sm transition-colors duration-300">
+                                Learn More
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </section>

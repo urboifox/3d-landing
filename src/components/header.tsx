@@ -2,58 +2,58 @@
 import { cn } from '@/utils/cn';
 import { GlobeIcon } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function Header() {
+    const pathname = usePathname();
     const [headerVisible, setHeaderVisible] = useState(true);
-    const [invertColors, setInvertColors] = useState(false);
+    const [invertColors, setInvertColors] = useState(pathname === '/');
 
     useEffect(() => {
         let lastScroll = 0;
-        const controller = new AbortController();
 
-        window.addEventListener(
-            'scroll',
-            () => {
-                const currentScroll = window.scrollY;
+        function handleScroll() {
+            const currentScroll = window.scrollY;
 
-                if (currentScroll > lastScroll && currentScroll > 500) {
-                    setHeaderVisible(false);
-                } else {
-                    setHeaderVisible(true);
-                }
+            if (currentScroll > lastScroll && currentScroll > 500) {
+                setHeaderVisible(false);
+            } else {
+                setHeaderVisible(true);
+            }
 
-                if (currentScroll > window.innerHeight) {
-                    setInvertColors(true);
-                } else {
-                    setInvertColors(false);
-                }
+            if (currentScroll < window.innerHeight && pathname === '/') {
+                setInvertColors(true);
+            } else {
+                setInvertColors(false);
+            }
 
-                lastScroll = currentScroll;
-            },
-            { signal: controller.signal }
-        );
+            lastScroll = currentScroll;
+        }
 
-        return () => controller.abort();
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
         <header
             className={cn(
-                'fixed top-0 w-full py-6 backdrop-blur-sm transition-discrete duration-400 ease-out',
+                'fixed top-0 w-full py-6 backdrop-blur-md transition-discrete duration-400 ease-out',
                 headerVisible ? '' : '-translate-y-full'
             )}
         >
             <div
                 className={cn(
                     'container flex items-center justify-between gap-4 transition-colors',
-                    invertColors ? 'text-black' : 'text-white'
+                    invertColors ? 'text-white' : 'text-black'
                 )}
             >
                 <h1 className="font-mono text-2xl font-semibold">Three.js</h1>
                 <nav className="flex items-center gap-4 text-sm">
-                    <Link href="/" className="hover:underline">
-                        Products
+                    <Link href="/product" className="hover:underline">
+                        Product
                     </Link>
                     <Link href="/" className="hover:underline">
                         About

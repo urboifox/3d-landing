@@ -7,6 +7,7 @@ import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 import { OrbitControls as OrbitControlsImpl } from 'three-stdlib';
 import { cn } from '@/utils/cn';
 import { AnimatePresence, motion } from 'motion/react';
+import Link from 'next/link';
 
 const products = [
     {
@@ -165,12 +166,18 @@ export default function ProductsSection() {
                                         {activeProduct.description}
                                     </p>
                                     <div className="flex items-center gap-3">
-                                        <button className="hover:bg-accent bg-primary w-fit rounded-full px-6 py-3 text-white transition-colors duration-300">
+                                        <Link
+                                            href="/product"
+                                            className="hover:bg-accent bg-primary w-fit rounded-full px-6 py-3 text-white transition-colors duration-300"
+                                        >
                                             Learn More
-                                        </button>
-                                        <button className="text-primary border-primary hover:border-accent w-fit rounded-full border px-6 py-3 transition-colors duration-300">
+                                        </Link>
+                                        <Link
+                                            href="/product"
+                                            className="text-primary border-primary hover:border-accent w-fit rounded-full border px-6 py-3 transition-colors duration-300"
+                                        >
                                             Configure
-                                        </button>
+                                        </Link>
                                     </div>
                                 </div>
                             </motion.div>
